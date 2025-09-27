@@ -68,9 +68,3 @@ Plano de Trabalho – Nhac Nhac
 	•	README explicando regras, como executar e como jogar.
 	•	Vídeo de até 5 minutos explicando estratégia.
 
-10. Cronograma sugerido
-	•	Dia 1-2: modelar tabuleiro, peças e regras.
-	•	Dia 3: implementar geração de movimentos e checagem de vitória.
-	•	Dia 4-5: implementar IA (Minimax ou MCTS) com heurística.
-	•	Dia 6: integrar IA x humano, adicionar controle de tempo.
-	•	Dia 7: preparar vídeo e documentação.
