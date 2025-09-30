@@ -7,18 +7,18 @@ class IA_Minimax:
 
     def __init__(self, profundidade_maxima: int = 4, limite_tempo: float = 30):
         self.profundidade_maxima = profundidade_maxima
-        self.limite_tempo = limite_tempo  # em segundos, deixei padrao 4 e 30seg, mas da pra deixar ele melhor
+        self.limite_tempo = limite_tempo  # segundos, o padrao de maximo de profundidade é 4 e tempo 30 seg, mas da pra aumentar pra testar mais
         self.nos_avaliados = 0
-        self._t0 = 0.0 # pra controle de tempo
+        self._t0 = 0.0 # pro controle do tempo
 
-    def _oponente(self, j: Jogador) -> Jogador: # só pra mudar o jogador mais facil, jogador_atual = self._oponente(jogador_atual)
+    def _oponente(self, j: Jogador) -> Jogador: # só pra mudar o jogador mais facil, jogador_atual = self._oponente(jogador_atual) dai troca
         return Jogador.IA if j == Jogador.JOGADOR else Jogador.JOGADOR
 
     def _checar_tempo(self):
         if self.limite_tempo is not None and (time.time() - self._t0) >= self.limite_tempo:
             raise TimeoutError
 
-    # avalia heuristica
+    # avalia a heuristica
     def _avaliar(self, tab: Tabuleiro, max_player: Jogador) -> float:
         vencedor = tab.ganhador()
         if vencedor == max_player:
@@ -45,7 +45,6 @@ class IA_Minimax:
         return score
 
     def obter_melhor_movimento(self, tabuleiro: Tabuleiro, jogador: Jogador) -> Optional[Peca.Move]:
-        """Escolhe o melhor movimento para 'jogador' no estado atual."""
         self.nos_avaliados = 0
         self._t0 = time.time()
         inicio = self._t0
@@ -54,7 +53,7 @@ class IA_Minimax:
         if not movimentos:
             return None
 
-       # ordenacao simples pra ajudar na poda
+       # ordenacao simples pra ajudar na poda depois
         def chave(mv: Peca.Move) -> int:
             pri = 0
             if mv.dst == Pos(1, 1): pri += 3
@@ -88,15 +87,7 @@ class IA_Minimax:
         print(f"Avaliados {self.nos_avaliados} nós em {tempo_decorrido:.2f}s (prof={self.profundidade_maxima})")
         return melhor_mov
 
-    def _minimax(self,
-                 tab: Tabuleiro,
-                 jogador_max: Jogador,
-                 profundidade: int,
-                 alfa: float,
-                 beta: float,
-                 maximizando: bool,
-                 jogador_atual: Jogador) -> tuple[float, Optional[Peca.Move]]:
-
+    def _minimax(self,tab: Tabuleiro,jogador_max: Jogador,profundidade: int,alfa: float,beta: float,maximizando: bool,jogador_atual: Jogador) -> tuple[float, Optional[Peca.Move]]:
         self._checar_tempo()
         self.nos_avaliados += 1
 
@@ -108,7 +99,7 @@ class IA_Minimax:
         if not movimentos:
             return self._avaliar(tab, jogador_max), None
 
-        # ordenar aqui também melhora a poda
+        # ordenacao pra melhorar a poda
         def chave(mv: Peca.Move) -> int:
             pri = 0
             if mv.dst == Pos(1, 1): pri += 3
