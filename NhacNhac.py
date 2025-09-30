@@ -13,8 +13,8 @@ def _parse_pos(txt: str) -> Optional[Pos]:
         l, c = txt.split(",", 1)
         l_int = int(l.strip())
         c_int = int(c.strip())
-        if 0 <= l_int <= 2 and 0 <= c_int <= 2:
-            return Pos(l_int, c_int)
+        if 1 <= l_int <= 3 and 1 <= c_int <= 3: # verifica se está dentro do tabuleiro
+            return Pos(l_int-1, c_int-1) # converte para o index da matriz
         return None
     except Exception:
         return None
@@ -95,7 +95,7 @@ class Jogo:
                     continue
 
             elif ac == "2":
-                org_txt = input("Origem (linha,coluna) [ex: 0,0] ou 'q' para voltar: ").strip().lower()
+                org_txt = input("Origem (linha,coluna) [ex: 1,1] ou 'q' para voltar: ").strip().lower()
                 if org_txt == "q":
                     continue
                 org = _parse_pos(org_txt)

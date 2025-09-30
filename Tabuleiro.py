@@ -158,9 +158,9 @@ class Tabuleiro:
 
     def imprimir_tabuleiro(self) -> None:
         print("\n TABULEIRO:")
-        print("    0   1   2")
+        print("    1   2   3")
         for i in range(3):
-            linha_str = f"{i} "
+            linha_str = f"{i+1} "
             for j in range(3):
                 topo = self.top(Pos(i, j))
                 if topo:
