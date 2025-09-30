@@ -11,5 +11,5 @@ def main():
     jogo = Jogo(profundidade_ia=args.prof, limite_tempo_ia=args.tempo)
     jogo.executar()
 
-if __name__ == "__main__":
+if __name__ == "__main__": # roda só se executar o main.py
     main()
