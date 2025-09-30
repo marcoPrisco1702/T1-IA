@@ -72,7 +72,7 @@ class Tabuleiro:
 
     def __init__(self,):
         self.grid: List[List[List[Peca]]] = [[[] for _ in range(3)] for _ in range(3)] # matriz 3x3 onde cada posicao tem uma lista de pecas
-        self.pecas_restantes: Dict[Jogador, Dict[Tamanho, int]] = {
+        self.stock: Dict[Jogador, Dict[Tamanho, int]] = {
             Jogador.JOGADOR: {Tamanho.P: 2, Tamanho.M: 2, Tamanho.G: 2},
             Jogador.IA: {Tamanho.P: 2, Tamanho.M: 2, Tamanho.G: 2},
         }
@@ -131,9 +131,27 @@ class Tabuleiro:
                     return players[0]
             return None
         
+            
+        
         def acabou(self) -> bool:
-            if self.ganhador() is not None:
-                return True
-            if 
+                return self.ganhador() is not None
+            
 
-                
+        def imprimir_tabuleiro(self) -> None:
+            print("\n TABULEIRO:")
+            print("    0   1   2")
+            for i in range(3):
+                linha_str = f"{i} "
+                for j in range(3):
+                    topo = self.top(Pos(i, j))
+                    if topo:
+                        linha_str += f"({topo})"
+                    else:
+                        linha_str += "(X)"
+                    if j < 2:
+                        linha_str += "|"
+                print(linha_str)
+            print("\n LEGENDA (peças visíveis de cima):")
+            print("Nenhuma: (X)")
+            print("Jogador: (1)=pequena, (2)=média, (3)=grande")
+            print("IA: (1*)=pequena, (2*)=média, (3*)=grande")  
