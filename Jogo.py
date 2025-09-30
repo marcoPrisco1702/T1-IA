@@ -1,9 +1,9 @@
+from __future__ import annotations
 import math
 import time
 from enum import IntEnum
 from typing import List, Optional, Tuple, Dict, Iterable, NamedTuple
 from dataclasses import dataclass
-from __future__ import annotations
 
 
 # enum pra representar os jogadores, jogador 1 sendo o humano e jogador 2 a IA sempre
@@ -89,12 +89,12 @@ class Tabuleiro:
                 return peca.tamanho > top_peca.tamanho
             
         def place (self, jogador: Jogador, peca: Peca, pos: Pos) -> None:
-            if self.pecas_restantes[jogador][peca.tamanho] <= 0:
+            if self.stock[jogador][peca.tamanho] <= 0:
                 raise ValueError(f"Jogador {jogador} nao tem mais pecas do tamanho {peca.tamanho} restantes")
             if not self.can_place(peca, pos):
                 raise ValueError(f"Nao pode colocar peca {peca} na posicao {pos}")
             self.grid[pos.linha][pos.coluna].append(peca)
-            self.pecas_restantes[jogador][peca.tamanho] -= 1
+            self.stock[jogador][peca.tamanho] -= 1
 
         def can_slide (self, org: Pos, dst:Pos) -> bool:
             if org == dst:
@@ -111,6 +111,12 @@ class Tabuleiro:
             peca = self.grid[org.linha][org.coluna].pop()
             self.grid[dst.linha][dst.coluna].append(peca)
 
+        def aplicar_movimento(self, jogador: Jogador, mv: Peca.Move) -> None:
+            if mv.tipo == "place":
+                self.place(jogador, Peca(jogador, mv.size), mv.dst)
+            else: #slide
+                self.slide(mv.org, mv.dst)
+
         def clone(self) -> "Tabuleiro":
             nb = Tabuleiro()
             # copia do tabuleiro pro min max nao alterar o tabuleiro real
@@ -123,6 +129,23 @@ class Tabuleiro:
         def visible_player(self, pos: Pos) -> Optional[Jogador]:
             top_peca = self.top(pos)
             return top_peca.jogador if top_peca else None
+        
+        def movimentos_possiveis(self, jogador: Jogador) -> List[Peca.Move]:
+            moves: List[Peca.Move] = []
+            # place
+            for tamanho in Tamanho:
+                if self.stock[jogador][tamanho] > 0:
+                    peca = Peca(jogador, tamanho)
+                    for pos in ALL_POS:
+                        if self.can_place(peca, pos):
+                            moves.append(Peca.Move("place", tamanho, None, pos))
+            # slide
+            for org in ALL_POS:
+                if self.top(org) and self.top(org).jogador == jogador:
+                    for dst in ALL_POS:
+                        if self.can_slide(org, dst):
+                            moves.append(Peca.Move("slide", None, org, dst))
+            return moves
         
         def ganhador(self) -> Optional[Jogador]:
             for line in WIN_LINES:
