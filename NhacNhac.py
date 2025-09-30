@@ -1,4 +1,3 @@
-# Jogo.py
 from __future__ import annotations
 import time
 from typing import Optional
@@ -48,6 +47,8 @@ class Jogo:
         print("1. Você (Humano)")
         print("2. IA")
         esc = input("Digite 1 ou 2: ").strip()
+        while esc not in ("1", "2"):
+            esc = input("Opção inválida. Digite 1 para começar o jogador ou 2 para a IA: ").strip()
         if esc == "2":
             self.jogador_atual = self.jogador_ia
         else:
