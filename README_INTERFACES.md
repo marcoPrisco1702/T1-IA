@@ -10,7 +10,7 @@ python3 Main.py
 python3 Main.py --prof 6 --tempo 45
 ```
 
-## 2. Interface Web Simples (Recomendada) ⭐
+## 2. Interface Web Simples (Recomendada) 
 
 ```bash
 python3 InterfaceWebSimples.py

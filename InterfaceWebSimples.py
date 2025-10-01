@@ -350,6 +350,13 @@ class GameHandler(http.server.SimpleHTTPRequestHandler):
                     <label for="tamanho_g">⚫ Grande</label>
                 </div>
                 
+                <div id="tamanho_ia_info" style="margin-top: 10px;">
+                    <label>Peças da IA:</label>
+                    <span style="margin-left: 10px;">○ Pequena</span>
+                    <span style="margin-left: 20px;">◯ Média</span>
+                    <span style="margin-left: 20px;">⭕ Grande</span>
+                </div>
+
                 <div id="slide_controles" style="display: none; margin-top: 10px;">
                     <button class="botao" onclick="cancelarOrigem()">❌ Cancelar Seleção</button>
                 </div>
