@@ -32,6 +32,8 @@ class IA_Minimax:
 
     # nessa funcao usamos ajuda de ia pra sugerir uma logica simples pra heuristica
     #é pra ser parecido com o jogo da velha, o centro acaba sendo a parte mais importante
+    #os valores dos pesos a gente foi experimentando tambem com sugestoes de ia
+    #a ideia é dar mais peso pra quem tem 2 alinhadas e ninguem bloqueando, depois 1 alinhada
     def _avaliar(self, tab: Tabuleiro, max_player: Jogador) -> float:
         vencedor = tab.ganhador()
         if vencedor == max_player:
