@@ -1,6 +1,6 @@
 # 🎯 Nhac Nhac - Interfaces Gráficas
 
-Este projeto agora possui três formas de jogar:
+Este projeto possui duas formas de jogar:
 
 ## 1. Interface de Terminal (Original)
 
@@ -18,23 +18,7 @@ python3 InterfaceWebSimples.py
 
 Depois abra seu navegador em: `http://localhost:8000`
 
-**Recursos:**
 
-- ✅ Interface visual moderna e responsiva
-- ✅ Tabuleiro interativo com cliques
-- ✅ Controles para colocar e mover peças
-- ✅ Configuração de profundidade e tempo da IA
-- ✅ Mostra estoque de peças em tempo real
-- ✅ Feedback visual do estado do jogo
-- ✅ Não requer instalação de bibliotecas extras
-
-## 3. Interface Tkinter (Requer tkinter)
-
-```bash
-python3 InterfaceGrafica.py
-```
-
-_Nota: Requer que o tkinter esteja instalado no sistema_
 
 ## Como Jogar
 
@@ -60,24 +44,14 @@ _Nota: Requer que o tkinter esteja instalado no sistema_
 
 ### Configurações da IA
 
-- **Profundidade**: 1-8 (padrão: 4) - maior = mais inteligente
+- **Profundidade**: 1-6 (padrão: 4) - maior = mais inteligente
 - **Tempo Limite**: 5-120 segundos (padrão: 30)
 
-## Características das Interfaces
-
-| Característica    | Terminal | Web Simples | Tkinter             |
-| ----------------- | -------- | ----------- | ------------------- |
-| Facilidade de uso | ⭐⭐     | ⭐⭐⭐⭐⭐  | ⭐⭐⭐⭐            |
-| Visual            | ⭐       | ⭐⭐⭐⭐⭐  | ⭐⭐⭐⭐            |
-| Instalação        | ✅       | ✅          | ❌ (requer tkinter) |
-| Multiplataforma   | ✅       | ✅          | ⚠️ (depende do SO)  |
-
-## Tecnologias Utilizadas
 
 - **Backend**: Python puro com classes originais do jogo
 - **IA**: Algoritmo Minimax com poda alfa-beta
 - **Interface Web**: HTML5, CSS3, JavaScript, HTTP Server nativo
-- **Interface Desktop**: Tkinter (quando disponível)
+
 
 ## Arquitetura do Projeto
 
@@ -88,8 +62,7 @@ _Nota: Requer que o tkinter esteja instalado no sistema_
 ├── 🎯 Tabuleiro.py         # Lógica do jogo e regras
 ├── 🎪 NhacNhac.py          # Controle de fluxo do jogo
 ├── 🌐 InterfaceWebSimples.py    # Interface web (recomendada)
-├── 🖥️ InterfaceGrafica.py       # Interface Tkinter
 └── 📖 README.md            # Este arquivo
 ```
 
-A interface web é **recomendada** por ser mais visual e não depender de bibliotecas externas!
+A interface web é **recomendada** por ser mais visual e facil de jogar
