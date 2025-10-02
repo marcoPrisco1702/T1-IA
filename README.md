@@ -4,8 +4,22 @@ Trabalho 1 de IA PUCRS
 Alunos: Felipe Ribeiro
 Marco Prisco
 
-As execucoes detalhadas estao no README_INTERFACE, o jogo foi feito 
-pra jogarmos no terminal mas como estava meio chato e ruim de jogar
-fizemos uma interface grafica, nela voce pode mudar a profundidade da
-IA e tambem o tempo maximo, como tambem da pra mudar se quiser jogar
-pelo terminal (está explicado no readme_interface). Pelos testes as profundidades maiores tendem a serem mais dificeis, quando testamos uma contra a outra com profundidades diferentes, em todas que testamos a IA de maior profundidade ganhava. Os valores default que usamos é profundidade 4 e maximo de 30 seg igual o professor tinha pedido mas se quiser deixar ela mais dificil pode colocar na profundidade de 6 e aumentar o tempo. Em profunidades maiores acabamos tendo alguns problemas, entao resolvemos tirar elas.
+As execuções detalhadas estão descritas no README_INTERFACE.
+O jogo foi originalmente desenvolvido para rodar no terminal, mas a experiência de jogar por lá não era muito prática. Por isso, implementamos também uma interface gráfica, onde é possível configurar:
+	•	A profundidade da IA
+	•	O tempo máximo de cálculo da jogada
+	•	Quem começa a partida
+
+(Se preferir, ainda é possível jogar pelo terminal — o passo a passo está explicado no README_INTERFACE).
+
+Durante os testes, percebemos que maiores profundidades tornam a IA mais difícil. Ao colocarmos IAs de profundidades diferentes uma contra a outra, a de profundidade maior sempre levava vantagem.
+
+Os valores padrão que utilizamos foram:
+	•	Profundidade: 4
+	•	Tempo máximo: 30 segundos
+
+Esses parâmetros seguem o que o professor pediu. No entanto, se quiser deixar o jogo mais desafiador, pode configurar, por exemplo, profundidade 6 e se quiser,um tempo maior mas, a profundidade 6 dificilmente vai passar de 10 segundos pra efetuar a jogada.
+
+OBS:Esses valores maiores de tempo a gente usou pra testar profundidades maiores que 6
+
+Vale destacar que em profundidades maiores que 6 tivemos alguns problemas de execução, então optamos por não mantê-las disponíveis no jogo.
