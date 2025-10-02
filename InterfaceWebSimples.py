@@ -17,12 +17,16 @@ class JogoWeb:
         self.jogador_humano = Jogador.JOGADOR
         self.jogador_ia = Jogador.IA
         self.jogador_atual = self.jogador_humano
+        # Limitar profundidade máxima inicial a 6
         self.ia = IA_Minimax(profundidade_maxima=4, limite_tempo=30.0)
         self.jogo_ativo = False
         self.posicao_origem = None
         self.mensagem_status = "Clique em 'Novo Jogo' para começar"
         
     def novo_jogo(self, quem_comeca: str = "jogador", profundidade: int = 4, tempo_limite: float = 30.0):
+        # Limitar profundidade máxima a 6
+        profundidade = min(max(profundidade, 1), 6)
+        
         self.tabuleiro = Tabuleiro()
         self.jogador_atual = self.jogador_ia if quem_comeca == "ia" else self.jogador_humano
         self.ia = IA_Minimax(profundidade_maxima=profundidade, limite_tempo=tempo_limite)
@@ -326,7 +330,7 @@ class GameHandler(http.server.SimpleHTTPRequestHandler):
                 </div>
                 <div style="margin-top: 10px;">
                     <label>Profundidade IA:</label>
-                    <input type="number" id="profundidade" value="4" min="1" max="8" style="width: 50px;">
+                    <input type="number" id="profundidade" value="4" min="1" max="6" style="width: 50px;">
                     <label style="margin-left: 20px;">Tempo limite (s):</label>
                     <input type="number" id="tempo_limite" value="30" min="5" max="120" style="width: 60px;">
                 </div>

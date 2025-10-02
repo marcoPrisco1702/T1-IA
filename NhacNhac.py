@@ -35,6 +35,9 @@ def _escolher_tamanho() -> Optional[Tamanho]:
 
 class Jogo:
     def __init__(self, profundidade_ia: int = 4, limite_tempo_ia: float = 30.0):
+        # Limitar profundidade máxima a 6
+        profundidade_ia = min(max(profundidade_ia, 1), 6)
+        
         self.tab = Tabuleiro()
         self.jogador_humano = Jogador.JOGADOR
         self.jogador_ia = Jogador.IA
