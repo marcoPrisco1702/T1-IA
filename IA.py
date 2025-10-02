@@ -66,7 +66,7 @@ class IA_Minimax:
         movimentos.sort(key=chave)
 
         melhor_val = -math.inf
-        melhor_mov: Optional[Peca.Move] = None
+        melhor_mov: Optional[Peca.Move] = movimentos[0] # se der timeout, pelo menos joga o primeiro na ordenacao, failsafe
 
         try:
             val, move = self._minimax(
@@ -78,9 +78,10 @@ class IA_Minimax:
                 maximizando=True,
                 jogador_atual=jogador
             )
-            melhor_val, melhor_mov = val, move
+            if move is not None: #só atualiza se achar algo melhor
+                melhor_val, melhor_mov = val, move
         except TimeoutError:
-            # se liga no limite_tempo e estourar, devolve o melhor que achou
+            # se der timeout, retorna o melhor movimento encontrado até agora
             pass
 
         tempo_decorrido = time.time() - inicio
