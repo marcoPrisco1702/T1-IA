@@ -60,7 +60,7 @@ WIN_LINES: Tuple[Tuple[Pos, Pos, Pos], ...] = ( #linhas que causam uma vitoria p
 # uma matriz 3x3 tipo cubo, onde cada posicao pode ficar vazia ou ter até 3 pecas
 class Tabuleiro:
 
-    #Heuristica
+    #pesos pra heuristica
     W_TWO_ALIGNED   = 50.0
     W_ONE_ALIGNED   = 10.0
     W_BLOCK_THREAT  = 50.0

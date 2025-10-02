@@ -17,14 +17,13 @@ class JogoWeb:
         self.jogador_humano = Jogador.JOGADOR
         self.jogador_ia = Jogador.IA
         self.jogador_atual = self.jogador_humano
-        # Limitar profundidade máxima inicial a 6
         self.ia = IA_Minimax(profundidade_maxima=4, limite_tempo=30.0)
         self.jogo_ativo = False
         self.posicao_origem = None
         self.mensagem_status = "Clique em 'Novo Jogo' para começar"
         
     def novo_jogo(self, quem_comeca: str = "jogador", profundidade: int = 4, tempo_limite: float = 30.0):
-        # Limitar profundidade máxima a 6
+        # limitamos a profundidade pra 6
         profundidade = min(max(profundidade, 1), 6)
         
         self.tabuleiro = Tabuleiro()
@@ -96,7 +95,7 @@ class JogoWeb:
                 self.tabuleiro.slide(self.posicao_origem, pos)
                 self.posicao_origem = None
                 
-            # Verificar fim de jogo
+            # verifica fim de jogo
             if self.tabuleiro.acabou():
                 self.jogo_ativo = False
                 vencedor = self.tabuleiro.ganhador()
@@ -106,7 +105,7 @@ class JogoWeb:
                     self.mensagem_status = "😅 A IA venceu!"
                 return {'sucesso': True, 'fim_jogo': True}
                 
-            # Passar vez para IA
+            # passa vez para IA
             self.jogador_atual = self.jogador_ia
             self.mensagem_status = "IA está pensando..."
             return {'sucesso': True, 'vez_ia': True}
@@ -123,7 +122,7 @@ class JogoWeb:
             if movimento:
                 self.tabuleiro.aplicar_movimento(self.jogador_ia, movimento)
                 
-            # Verificar fim de jogo
+            # verifica fim de jogo
             if self.tabuleiro.acabou():
                 self.jogo_ativo = False
                 vencedor = self.tabuleiro.ganhador()
@@ -133,15 +132,15 @@ class JogoWeb:
                     self.mensagem_status = "😅 A IA venceu!"
                 return {'sucesso': True, 'fim_jogo': True}
                 
-            # Passar vez para jogador
+            # passa vez para jogador
             self.jogador_atual = self.jogador_humano
             self.mensagem_status = "Sua vez!"
             return {'sucesso': True}
             
         except Exception as e:
             return {'sucesso': False, 'erro': f'Erro na IA: {str(e)}'}
-
-
+        
+# essa parte a estrutura da interface web foi feita com IA, apenas fizemos pequenos ajustes manuais
 class GameHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, jogo_instance=None, **kwargs):
         self.jogo = jogo_instance
@@ -572,7 +571,7 @@ def main():
     
     try:
         with socketserver.TCPServer(("", port), handler) as httpd:
-            # Tentar abrir o navegador automaticamente
+            # tenta abrir o navegador automaticamente
             try:
                 webbrowser.open(f'http://localhost:{port}')
             except:

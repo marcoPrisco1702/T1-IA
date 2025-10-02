@@ -3,6 +3,18 @@ import time
 from typing import Optional
 from Tabuleiro import Tabuleiro, Jogador, Peca, Pos, Tamanho, WIN_LINES
 
+#aqui utilizamos o esqueleto do algoritmo fornecido no moodle pelo professor na aula do dia 28/08
+#o algoritmo é o minimax com poda alfa beta
+#fizemos adaptacoes para o jogo e para ter um controle de tempo
+#no exemplo fornecido ele limita só por profundidade e nao se preocupa muito com o tempo
+#como nossa ideia inicial era fazer com profundidades maiores, decidimos implementar o controle de tempo
+#mas como tivemos algumas dificuldades, acabamos limitando a profundidade pra 6, apartir de 7 pra cima dava alguns probleminhas 
+#dificilmente até na profundidade 6 ela vai cehgar a mais que 10 segundos por conta disso
+#mas deixamos o limite de tempo pra 30 segundos pra garantir o que o professor pediu
+#definimos tambem uma heuristica simples 
+#a ordenacao de movimentos é a de movimentos de place centrais no tabuleiro e pecas maiores
+
+
 class IA_Minimax:
 
     def __init__(self, profundidade_maxima: int = 4, limite_tempo: float = 30):
@@ -18,7 +30,8 @@ class IA_Minimax:
         if self.limite_tempo is not None and (time.time() - self._t0) >= self.limite_tempo:
             raise TimeoutError
 
-    # avalia a heuristica
+    # nessa funcao usamos ajuda de ia pra sugerir uma logica simples pra heuristica
+    #é pra ser parecido com o jogo da velha, o centro acaba sendo a parte mais importante
     def _avaliar(self, tab: Tabuleiro, max_player: Jogador) -> float:
         vencedor = tab.ganhador()
         if vencedor == max_player:

@@ -172,5 +172,5 @@ class Jogo:
 
 
 if __name__ == "__main__":
-    jogo = Jogo(profundidade_ia=4, limite_tempo_ia=30.0)  # troque se quiser
+    jogo = Jogo(profundidade_ia=4, limite_tempo_ia=30.0)  # trocavel 
     jogo.executar()
